@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Solitaire Game in New Tab</title>
+</head>
+<body>
+
+    <button id="loadButton">1v1.lol</button>
+
+    <script>
+        document.getElementById('loadButton').addEventListener('click', function() {
+            // Fetch the HTML content from the CDN link
+            fetch('https://cdn.jsdelivr.net/gh/ProjectPlusGames/solitaire@main/sigma.html')
+                .then(response => response.text())  // Get the HTML as text
+                .then(html => {
+                    // Create a new tab
+                    const newTab = window.open();
+
+                    // Write the fetched HTML into the new tab's document
+                    newTab.document.open();
+                    newTab.document.write(html);
+                    newTab.document.close();  // Close the document to trigger rendering
+
+                    // Optional: You could ensure any external resources are loaded (scripts, styles, etc.) if needed
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        });
+    </script>
+
+</body>
+</html>
